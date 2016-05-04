@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Debug</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css?family=Roboto");
+        
+        body
+        {
+            background: #212121;
+            color: rgba(255, 255, 255, 0.7);
+
+            font-family: "Roboto", "Open Sans", sans-serif;
+            font-size: 16px;
+        }
+        
+        .secondary
+        {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        details.trace
+        {
+            margin: 8px 0;
+        }
+        details.trace > summary
+        {
+            padding: 4px;
+
+            background: rgba(183, 28, 28, 0.5);
+
+            cursor: pointer;
+
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            outline: none;
+        }
+        details.trace > summary:hover
+        {
+            background: rgba(198, 40, 40, 0.5);
+        }
+        details.trace > div.details
+        {
+            padding: 8px 8px;
+        }
+
+        .code
+        {
+            padding: 16px 4px;
+        }
+        .dump
+        {
+            padding: 16px 4px;
+        }
+    </style>
+</head>
+<body>
+
+<?php
+
+ini_set('highlight.string', '#4CAF50');
+ini_set('highlight.comment', '#9E9E9E');
+ini_set('highlight.keyword', 'inherit');
+ini_set('highlight.bg', 'none');
+ini_set('highlight.default', '#FF9800');
+ini_set('highlight.html', 'inherit');
