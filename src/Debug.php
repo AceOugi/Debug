@@ -10,6 +10,8 @@ class Debug
      */
     public static function dump($expression, ...$expressions)
     {
+        @ob_clean();
+
         include __DIR__.'/Debug.phtml';
         include __DIR__.'/DebugDump.phtml';
 
@@ -49,6 +51,8 @@ class Debug
 
     public static function errorHandler($errno, $errstr, $errfile = null, $errline = null, $errcontext = [])
     {
+        @ob_clean();
+
         $type = 'unknown';
         switch ($errno)
         {
@@ -85,6 +89,8 @@ class Debug
 
     public static function exceptionHandler(\Throwable $ex)
     {
+        @ob_clean();
+
         include __DIR__.'/Debug.phtml';
         include __DIR__.'/DebugException.phtml';
 
