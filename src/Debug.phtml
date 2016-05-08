@@ -62,10 +62,58 @@
 <body>
 
 <?php
+/**
+ * @var string $title
+ * @var string $message
+ * @var string|null $file_path
+ * @var string|null $file_line
+ * @var array $traces backtrace
+ * @var mixed[] $expressions
+ */
+?>
 
-ini_set('highlight.string', '#4CAF50');
-ini_set('highlight.comment', '#9E9E9E');
-ini_set('highlight.keyword', 'inherit');
-ini_set('highlight.bg', 'none');
-ini_set('highlight.default', '#FF9800');
-ini_set('highlight.html', 'inherit');
+<h1><?=$title?></h1>
+
+<h2><?=$message?></h2>
+
+<?php if ($file_path AND $file_line): ?>
+<?=$file_path?><br /><br />
+<div style="border: 1px dashed rgba(158, 158, 158, 0.25)">
+    <?php static::highlight($file_path, $file_line); ?>
+</div>
+<?php endif; ?>
+
+<?php if($expressions): ?>
+<div style="border: 1px dashed rgba(158, 158, 158, 0.25) ; padding: 8px">
+    <?php \AceOugi\Dumper::dump(...$expressions); ?>
+</div>
+<?php endif; ?>
+
+<?php foreach ($traces as $trace_key => $trace): ?>
+    <details class="trace">
+        <summary>
+            <?php if (isset($trace['file'])): ?>
+                <?=$trace['file']?>
+            <?php endif; ?>
+
+            <?php if (isset($trace['class'])): ?>
+                <span class="secondary" style="float: right"><?=$trace['class']?><?=$trace['type']?><?=$trace['function']?></span>
+            <?php elseif (isset($trace['function'])): ?>
+                <span class="secondary" style="float: right"><?=$trace['function']?></span>
+            <?php endif; ?>
+        </summary>
+        <div class="details">
+            <?php if (isset($trace['file']) OR isset($trace['line'])): ?>
+                <div style="border: 1px dashed rgba(158, 158, 158, 0.25)">
+                    <?php static::highlight($trace['file'], $trace['line']); ?>
+                </div>
+            <?php endif; ?>
+
+            <?php if (isset($trace['args']) AND count($trace['args'])): ?>
+                <div style="border: 1px dashed rgba(158, 158, 158, 0.25) ; padding: 8px">
+                    <?php \AceOugi\Dumper::dump($trace['args']); ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </details>
+<?php endforeach; ?>

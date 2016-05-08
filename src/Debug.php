@@ -5,33 +5,24 @@ namespace AceOugi;
 class Debug
 {
     /**
-     * @param mixed $expression
-     * @param mixed ...$expressions [optional]
-     */
-    public static function dump($expression, ...$expressions)
-    {
-        @ob_clean();
-
-        include __DIR__.'/Debug.phtml';
-        include __DIR__.'/DebugDump.phtml';
-
-        Dumper::dump($expression, ...$expressions);
-
-        exit;
-    }
-
-    /**
-     * @param string $file
+     * @param string $file_path
      * @param int $file_line
      */
-    protected static function highlight(string $file, int $file_line)
+    protected static function highlight(string $file_path, int $file_line)
     {
-        $source = file_get_contents($file);
+        //ini_set('highlight.string', '#4CAF50');
+        //ini_set('highlight.comment', '#9E9E9E');
+        //ini_set('highlight.keyword', 'inherit');
+        //ini_set('highlight.bg', 'none');
+        //ini_set('highlight.default', '#FF9800');
+        //ini_set('highlight.html', 'inherit');
+
+        $source = file_get_contents($file_path);
         $lines = preg_split('{\r\n|\r|\n}', $source);
         $count = count($lines);
 
         echo '<ol style="white-space: pre;">';
-        for($i = 0 ; $i < count($lines) ; $i++)
+        for($i = 0 ; $i < $count ; $i++)
         {
             $j = $i+1;
             if ($j < $file_line-9) continue;
@@ -49,10 +40,26 @@ class Debug
         echo '</ol>';
     }
 
+    protected static function display($title, $message, $file_path = null, $file_line = null, $traces = [], ...$expressions)
+    {
+        while (ob_get_level()) ob_end_clean();
+
+        include __DIR__.'/Debug.phtml';
+
+        exit(1);
+    }
+
+    /**
+     * @param mixed $expression
+     * @param mixed ...$expressions [optional]
+     */
+    public static function dump($expression, ...$expressions)
+    {
+        static::display('Debug', 'Dumps information', null, null, [], $expression, ...$expressions);
+    }
+
     public static function errorHandler($errno, $errstr, $errfile = null, $errline = null, $errcontext = [])
     {
-        @ob_clean();
-
         $type = 'unknown';
         switch ($errno)
         {
@@ -81,20 +88,18 @@ class Debug
         }
         $type = ucfirst($type);
 
-        include __DIR__.'/Debug.phtml';
-        include __DIR__.'/DebugError.phtml';
-
-        exit;
+        static::display($type, $errstr, $errfile, $errline, [], $errcontext);
     }
 
     public static function exceptionHandler(\Throwable $ex)
     {
-        @ob_clean();
-
-        include __DIR__.'/Debug.phtml';
-        include __DIR__.'/DebugException.phtml';
-
-        exit;
+        static::display(
+            'Exception '.get_class($ex).($ex->getCode() ? '#'.$ex->getCode() : ''),
+            $ex->getMessage(),
+            $ex->getFile(),
+            $ex->getLine(),
+            $ex->getTrace()
+        );
     }
 
     public function __invoke($request, $response, $next)
