@@ -9,9 +9,7 @@
     "phpunit/phpunit": "*"
   },
   "autoload": {
-    "classmap": [
-      "src/Debug.php"
-    ],
+    "classmap": ["src/Debug.php"],
     "files": ["inc/dd.php", "inc/debug.php"]
   }
 }
