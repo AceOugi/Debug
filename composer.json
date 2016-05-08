@@ -5,6 +5,9 @@
     "php": "^7.0",
     "aceougi/dumper": "*"
   },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
   "autoload": {
     "classmap": [
       "src/Debug.php"
