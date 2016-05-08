@@ -4,7 +4,7 @@ if (!function_exists('dd'))
 {
     /**
      * @param mixed $expression
-     * @param mixed ...$expressions [optional]
+     * @param mixed[] ...$expressions [optional]
      */
     function dd($expression, ...$expressions)
     {
