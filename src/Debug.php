@@ -88,7 +88,7 @@ class Debug
         }
         $type = ucfirst($type);
 
-        static::display($type, $errstr, $errfile, $errline, [], $errcontext);
+        static::display($type, $errstr, $errfile, $errline, debug_backtrace(), $errcontext);
     }
 
     public static function exceptionHandler(\Throwable $ex)
