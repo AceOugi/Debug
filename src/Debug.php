@@ -42,6 +42,8 @@ class Debug
 
     protected static function display($title, $message, $file_path = null, $file_line = null, $traces = [], ...$expressions)
     {
+        http_response_code(500);
+
         while (ob_get_level()) ob_end_clean();
 
         include __DIR__.'/Debug.phtml';
