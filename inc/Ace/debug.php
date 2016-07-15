@@ -8,6 +8,6 @@ if (!function_exists('debug'))
      */
     function debug($expression, ...$expressions)
     {
-        \Ace\Debug::dump($expression, ...$expressions);
+        Ace\Debug::display('Debug', 'Dumps information', null, null, [], $expression, ...$expressions);
     }
 }
