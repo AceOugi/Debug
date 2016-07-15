@@ -3,11 +3,10 @@
 if (!function_exists('debug'))
 {
     /**
-     * @param mixed $expression
-     * @param mixed[] ...$expressions [optional]
+     * @param DateTime[] ...$expressions
      */
-    function debug($expression, ...$expressions)
+    function debug(...$expressions)
     {
-        Ace\Debug::display('Debug', 'Dumps information', null, null, [], $expression, ...$expressions);
+        Ace\Debug::display('Debug', 'Dumps information', null, null, [], ...$expressions);
     }
 }
