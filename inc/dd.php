@@ -7,6 +7,6 @@ if (!function_exists('dd'))
      */
     function dd(...$expressions)
     {
-        \Ace\Debug::dump(...$expressions);
+        \Ace\debug(...$expressions);
     }
 }
