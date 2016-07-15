@@ -8,6 +8,6 @@ if (!function_exists('debug'))
      */
     function debug($expression, ...$expressions)
     {
-        \AceOugi\Debug::dump($expression, ...$expressions);
+        \Ace\Debug::dump($expression, ...$expressions);
     }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "aceougi/debug",
+  "name": "ace/debug",
   "type": "library",
   "require": {
     "php": "^7.0",
