@@ -3,11 +3,10 @@
 if (!function_exists('dd'))
 {
     /**
-     * @param mixed $expression
-     * @param mixed[] ...$expressions [optional]
+     * @param mixed[] ...$expressions
      */
-    function dd($expression, ...$expressions)
+    function dd(...$expressions)
     {
-        \Ace\Debug::dump($expression, ...$expressions);
+        \Ace\Debug::dump(...$expressions);
     }
 }
