@@ -40,7 +40,7 @@ class Debug
         echo '</ol>';
     }
 
-    protected static function display($title, $message, $file_path = null, $file_line = null, $traces = [], ...$expressions)
+    public static function display($title, $message, $file_path = null, $file_line = null, $traces = [], ...$expressions)
     {
         http_response_code(500);
 
