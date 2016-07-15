@@ -10,6 +10,6 @@
   },
   "autoload": {
     "classmap": ["src/Ace/Debug.php"],
-    "files": ["inc/dd.php", "inc/debug.php"]
+    "files": ["inc/Ace/dump.php", "inc/Ace/debug.php", "inc/dd.php"]
   }
 }
