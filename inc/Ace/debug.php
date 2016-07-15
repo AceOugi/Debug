@@ -1,12 +1,11 @@
 <?php
 
-if (!function_exists('debug'))
+namespace Ace;
+
+/**
+ * @param mixed[] ...$expressions
+ */
+function debug(...$expressions)
 {
-    /**
-     * @param DateTime[] ...$expressions
-     */
-    function debug(...$expressions)
-    {
-        Ace\Debug::display('Debug', 'Dumps information', null, null, [], ...$expressions);
-    }
+    Debug::display('Debug', 'Dumps information', null, null, [], ...$expressions);
 }
