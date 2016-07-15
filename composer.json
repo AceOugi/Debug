@@ -2,8 +2,7 @@
   "name": "ace/debug",
   "type": "library",
   "require": {
-    "php": "^7.0",
-    "aceougi/dumper": "*"
+    "php": "^7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "*"
