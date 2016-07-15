@@ -46,6 +46,7 @@ class Debug
 
         while (ob_get_level()) ob_end_clean();
 
+        include __DIR__.'/debug.phtml';
 
         exit(1);
     }
