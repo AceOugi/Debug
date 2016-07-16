@@ -85,7 +85,7 @@
 
 <?php if($expressions): ?>
 <div style="border: 1px dashed rgba(158, 158, 158, 0.25) ; padding: 8px">
-    <?php \AceOugi\Dumper::dump(...$expressions); ?>
+    <?php \Ace\dump(...$expressions); ?>
 </div>
 <?php endif; ?>
 
@@ -111,7 +111,7 @@
 
             <?php if (isset($trace['args']) AND count($trace['args'])): ?>
                 <div style="border: 1px dashed rgba(158, 158, 158, 0.25) ; padding: 8px">
-                    <?php \AceOugi\Dumper::dump($trace['args']); ?>
+                    <?php \Ace\dump($trace['args']); ?>
                 </div>
             <?php endif; ?>
         </div>
